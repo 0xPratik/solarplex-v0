@@ -25,6 +25,12 @@ enum class ActionType(val value: Int) {
     TOPIC(140),
     VOTE(160)
 }
+
+enum class CrudType(val value: Int) {
+    POST(1),
+    PUT(2),
+    DELETE(3)
+}
 data class InnerAction(
     val crud: Int,
     val type: Int,
@@ -60,6 +66,5 @@ interface SolarplexAPI {
     suspend fun performAction(
         @Body request: ActionRequest
     ): ActionReturnType
-
 
 }
