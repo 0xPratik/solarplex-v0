@@ -7,9 +7,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.solarplexv0.screens.MainScreen
 import com.example.solarplexv0.screens.main.MainViewModel
+import com.solana.mobilewalletadapter.clientlib.ActivityResultSender
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(activityResultSender: ActivityResultSender) {
 
     val navController = rememberNavController( )
 
@@ -17,7 +18,7 @@ fun AppNavigation() {
 
         composable(AppScreens.MainScreen.name) {
             val mainViewModel = hiltViewModel<MainViewModel>()
-            MainScreen(mainViewModel = mainViewModel)
+            MainScreen(mainViewModel = mainViewModel,activityResultSender = activityResultSender)
         }
     }
 }

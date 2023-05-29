@@ -12,21 +12,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.solarplexv0.nav.AppNavigation
 import com.example.solarplexv0.ui.theme.Solarplexv0Theme
+import com.solana.mobilewalletadapter.clientlib.ActivityResultSender
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val activityResultSender = ActivityResultSender(this)
         setContent {
-          SolarplexApp()
+          SolarplexApp(activityResultSender = activityResultSender)
         }
     }
 }
 
 @Composable
-fun SolarplexApp () {
+fun SolarplexApp (activityResultSender: ActivityResultSender) {
     Solarplexv0Theme {
-        AppNavigation()
+        AppNavigation(activityResultSender = activityResultSender)
     }
 }

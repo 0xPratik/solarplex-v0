@@ -2,6 +2,7 @@ package com.example.solarplexv0.di
 
 import com.example.solarplexv0.network.SolarplexAPI
 import com.example.solarplexv0.utils.Constants
+import com.solana.mobilewalletadapter.clientlib.MobileWalletAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,5 +25,10 @@ class AppModule {
         addConverterFactory(GsonConverterFactory.create()).
         build().
         create(SolarplexAPI::class.java)
+    }
+
+    @Provides
+    fun providesMobileWalletAdapter(): MobileWalletAdapter {
+        return MobileWalletAdapter()
     }
 }
