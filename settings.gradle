@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "solarplexv0"
 include ':app'
+include ':kdispatchsdk'
