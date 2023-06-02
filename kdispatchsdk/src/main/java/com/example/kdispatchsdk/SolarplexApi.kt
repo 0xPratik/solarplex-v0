@@ -44,7 +44,7 @@ data class Params(
 )
 
 
-interface SolarplexApi {
+ interface SolarplexApi {
 
     @GET(value = "entities/forum/yjtu_Y1CgN98OJOF")
     suspend fun getForum() : Forum

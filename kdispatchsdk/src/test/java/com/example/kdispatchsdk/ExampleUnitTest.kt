@@ -1,5 +1,6 @@
 package com.example.kdispatchsdk
 
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -11,7 +12,36 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun doesReturnForum() {
+        runBlocking {
+            val data = Solarplex(Endpoints.Devnet).getSolarplexApi().getForum()
+            println(data)
+        }
     }
+
+    @Test
+    fun doesReturnTags() {
+        runBlocking {
+            val tags = Solarplex(Endpoints.Devnet).getSolarplexApi().getAllTags()
+            println(tags)
+        }
+    }
+
+    @Test
+    fun doesGetAlltheTopics() {
+        runBlocking {
+            val topics = Solarplex(Endpoints.Devnet).getSolarplexApi().getAllTopics()
+            println(topics)
+        }
+    }
+
+    @Test
+    fun doesCreatesAPost() {
+        runBlocking {
+//            val res = Solarplex(Endpoints.Devnet).getSolarplexApi().performAction(
+//
+//            )
+        }
+    }
+
 }

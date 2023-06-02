@@ -11,6 +11,7 @@ enum class Endpoints(val url : String) {
 open class Solarplex(private val baseurl: Endpoints) {
 
     fun getSolarplexApi() : SolarplexApi {
+
         return Retrofit.
         Builder().
         baseUrl(baseurl.url).

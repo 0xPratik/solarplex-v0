@@ -1,6 +1,8 @@
 package com.example.solarplexv0.di
 
-import com.example.solarplexv0.network.SolarplexAPI
+import com.example.kdispatchsdk.Endpoints
+import com.example.kdispatchsdk.Solarplex
+import com.example.kdispatchsdk.SolarplexApi
 import com.example.solarplexv0.utils.Constants
 import com.solana.mobilewalletadapter.clientlib.MobileWalletAdapter
 import dagger.Module
@@ -18,13 +20,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providesSolarplexApi() : SolarplexAPI {
-        return Retrofit.
-        Builder().
-        baseUrl(Constants.BASE_URL).
-        addConverterFactory(GsonConverterFactory.create()).
-        build().
-        create(SolarplexAPI::class.java)
+    fun providesSolarplexApi() : SolarplexApi {
+        return Solarplex(Endpoints.Devnet).getSolarplexApi()
     }
 
     @Provides
