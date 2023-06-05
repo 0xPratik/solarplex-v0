@@ -8,15 +8,15 @@ import retrofit2.http.Path
 
 
 data class ActionRequest(
-    val action: Action
+    val action: RequestBody
 )
 
-data class Action(
+data class RequestBody(
     val creatorId: String,
     val wallet: String,
     val chainId: Int,
     val hash: String,
-    val action: InnerAction
+    val action: Action
 )
 
 enum class ActionType(val value: Int) {
@@ -30,7 +30,7 @@ enum class CrudType(val value: Int) {
     PUT(2),
     DELETE(3)
 }
-data class InnerAction(
+data class Action(
     val crud: Int,
     val type: Int,
     val parentId: String,
@@ -46,8 +46,10 @@ data class Params(
 
  interface SolarplexApi {
 
-    @GET(value = "entities/forum/yjtu_Y1CgN98OJOF")
-    suspend fun getForum() : Forum
+    @GET(value = "entities/forum/{forumId}")
+    suspend fun getForum(
+        @Path("forumId") forumId : String = "yjtu_Y1CgN98OJOF"
+    ) : Forum
 
     @GET(value = "action/pending/tmpdid-{userAddress}:0096")
     suspend fun getPendingActions(
@@ -57,8 +59,10 @@ data class Params(
     @GET(value = "entities/tags")
     suspend fun getAllTags() : Tag
 
-    @GET(value = "entities/forum/yjtu_Y1CgN98OJOF/topics")
-    suspend fun getAllTopics(): Topic
+    @GET(value = "entities/forum/{forumId}/topics")
+    suspend fun getAllTopics(
+        @Path("forumId") forumId : String = "yjtu_Y1CgN98OJOF"
+    ): Topic
 
     @POST(value = "action")
     suspend fun performAction(
